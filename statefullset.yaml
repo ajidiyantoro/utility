@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: labstack-utility
+  namespace: utility
+spec:
+  serviceName: ""
+  selector:
+    matchLabels:
+      app: labstack-utility
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: labstack-utility
+    spec:
+      containers:
+        - name: labstack-utility
+          image: ajidiyantoro/utility:latest
+          imagePullPolicy: Always
+          env:
+            - name: LDAPTLS_REQCERT
+              value: "never"
